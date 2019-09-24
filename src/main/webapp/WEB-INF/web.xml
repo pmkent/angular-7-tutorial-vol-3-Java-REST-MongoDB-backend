@@ -1,0 +1,69 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+
+  <listener>
+    <listener-class>com.pmk.app.AppContextListener</listener-class>
+  </listener>
+
+  <servlet>
+    <servlet-name>jersey-servlet</servlet-name>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+
+    <init-param>
+      <param-name>com.sun.jersey.config.property.packages</param-name>
+      <param-value>com.pmk.app.rest</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+      <param-value>true</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
+      <param-value>com.pmk.app.filter.JWTSecurityFilter</param-value>
+    </init-param>
+
+    <!-- Disables Jetty useless logs -->
+    <init-param>
+      <param-name>com.sun.jersey.config.feature.DisableWADL</param-name>
+      <param-value>true</param-value>
+    </init-param>
+
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>jersey-servlet</servlet-name>
+    <url-pattern>/api/*</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>cross-origin</filter-name>
+    <filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
+
+    <init-param>
+      <param-name>allowedOrigins</param-name>
+      <param-value>*</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>allowedMethods</param-name>
+      <param-value>GET,POST,HEAD</param-value>
+    </init-param>
+
+    <init-param>
+      <param-name>allowedHeaders</param-name>
+      <param-value>X-Requested-With,Content-Type,Accept,Origin</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>cross-origin</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+</web-app>

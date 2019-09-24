@@ -1,0 +1,84 @@
+<mat-card>
+  <mat-card-title align='center'>
+    <div class='title-header'>
+    <span matBadge='{{users.length}}' matBadgeOverlap='false' matBadgeColor='accent'>User List</span>
+    </div>
+  </mat-card-title>
+  
+  <mat-divider></mat-divider>
+    
+  <mat-card-content align='center'>
+    <div>
+    <mat-form-field>
+      <input matInput (keyup)='applyFilter($event.target.value)' placeholder='User List Filter'>
+    </mat-form-field>
+    </div>
+    
+    <table mat-table [dataSource]='dataSource' width='100%' class='mat-elevation-z8' matSort>
+    <ng-container matColumnDef='userId'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header align='right'>User Id</th>
+      <td mat-cell *matCellDef='let user' align='left'>{{user.userId}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef='firstName'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header align='right'>First Name</th>
+      <td mat-cell *matCellDef='let user' align='left'>{{user.firstName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef='middleName'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header align='right'>Middle Name</th>
+      <td mat-cell *matCellDef='let user' align='left'>{{user.middleName}}</td>
+    </ng-container>      
+
+    <ng-container matColumnDef='lastName'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header align='right'>Last Name</th>
+      <td mat-cell *matCellDef='let user' align='left'>{{user.lastName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef='username'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header align='right'>User Name</th>
+      <td mat-cell *matCellDef='let user' align='left'>{{user.username}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef='dateOfBirth'>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header align='right'>Date of Birth</th>
+      <td mat-cell *matCellDef='let user' align='left'>{{user.dateOfBirth | date}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef='edit'>
+      <th mat-header-cell *matHeaderCellDef align='right'>Edit</th>
+      <td mat-cell *matCellDef='let user' align='left'>
+        <button mat-raised-button (click)='editUser(user)'>
+          <mat-icon color='primary'>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef='delete'>
+      <th mat-header-cell *matHeaderCellDef align='right'>Delete</th>
+      <td mat-cell *matCellDef='let user' align='left'>
+        <button mat-raised-button (click)='deleteUser(user)'>
+          <mat-icon color='primary'>cancel_presentation</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+    <tr mat-row *matRowDef='let row; columns: displayedColumns;'></tr>
+    </table>
+
+    <mat-paginator class='mat-elevation-z8'
+      #listUsersPaginator
+      [length]='length'
+      [pageSize]='pageSize'
+      [pageSizeOptions]='pageSizeOptions'
+      (page)='pageEvent = $event'>
+    </mat-paginator>
+  </mat-card-content>
+  <mat-card-footer align='right'>
+    <button mat-raised-button color='accent' (click)='logout()'>
+	  <mat-icon>power_settings_new</mat-icon>
+      Logout
+    </button>
+  </mat-card-footer>
+</mat-card>

@@ -1,0 +1,363 @@
+{
+  "swagger": "2.0",
+  "info" : {
+    "description" : "<h1>User Maven Webapp<\/h1>",
+    "version" : "1.0",
+    "title" : "Angular CRUD REST API"
+  },
+  "basePath" : "/api/",
+  "schemes" : [],
+  "tags" : [
+    {
+      "name" : "LoginEndpoint"
+    }
+    ,
+    {
+      "name" : "UserEndpoint"
+    }
+  ],
+  "definitions" : {
+    "json_DAOBean" : {
+      "type" : "object",
+      "title" : "DAOBean",
+          "properties" : {
+            "id" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            },
+            "createDt" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "number"
+            },
+            "updateDt" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "number"
+            },
+            "updateBy" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            },
+            "deleteDt" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "number"
+            }
+          },
+      "example" : {
+  "id" : "...",
+  "createDt" : 12345,
+  "updateDt" : 12345,
+  "updateBy" : "...",
+  "deleteDt" : 12345
+},
+      "description" : ""
+    }
+    ,
+    "json_User" : {
+      "type" : "object",
+      "title" : "User",
+      "allOf" : [
+        {
+          "$ref" : "#/definitions/json_DAOBean"
+        },
+        {
+          "properties" : {
+            "userId" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "number"
+            },
+            "username" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            },
+            "firstName" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            },
+            "middleName" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            },
+            "lastName" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            },
+            "password" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            },
+            "token" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            },
+            "showpassword" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            },
+            "dateOfBirth" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "number"
+            },
+            "gender" : {
+            "readOnly" : false,
+"description" : "",
+"type" : "string"
+            }
+          }
+        }
+      ],
+      "example" : {
+  "userId" : 12345,
+  "username" : "...",
+  "firstName" : "...",
+  "middleName" : "...",
+  "lastName" : "...",
+  "password" : "...",
+  "token" : "...",
+  "showpassword" : "...",
+  "dateOfBirth" : 12345,
+  "gender" : "...",
+  "id" : "...",
+  "createDt" : 12345,
+  "updateDt" : 12345,
+  "updateBy" : "...",
+  "deleteDt" : 12345
+},
+      "description" : ""
+    }
+  },
+  "paths": {
+    "\/login" : {
+      "post" : {
+        "tags" : [ "LoginEndpoint" ],
+        "description" : "",
+        "operationId" : "authenticate",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "body",
+            "in" : "body",
+            "schema" : {
+"description" : "",
+"type" : "string"
+            },
+            "description" : ""
+          }
+        ],
+        "responses" : {
+          "201" : {
+            "schema" : {
+"description" : "",
+"type" : "file"
+            },
+            "description" : ""
+          }
+        }
+      }
+    }
+    ,
+    "\/user" : {
+      "get" : {
+        "tags" : [ "UserEndpoint" ],
+        "description" : "",
+        "operationId" : "getUsers",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "Authorization",
+            "in" : "header",
+            "type" : "string",
+            "description" : ""
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+"description" : "",
+"type" : "file"
+            },
+            "description" : ""
+          }
+        }
+      }
+      ,
+      "post" : {
+        "tags" : [ "UserEndpoint" ],
+        "description" : "",
+        "operationId" : "addUser",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "Authorization",
+            "in" : "header",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "body",
+            "in" : "body",
+            "schema" : {
+"$ref" : "#/definitions/json_User"
+            },
+            "description" : ""
+          }
+        ],
+        "responses" : {
+          "201" : {
+            "schema" : {
+"description" : "",
+"type" : "file"
+            },
+            "description" : ""
+          }
+        }
+      }
+      ,
+      "put" : {
+        "tags" : [ "UserEndpoint" ],
+        "description" : "",
+        "operationId" : "updateUser",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "Authorization",
+            "in" : "header",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "body",
+            "in" : "body",
+            "schema" : {
+"$ref" : "#/definitions/json_User"
+            },
+            "description" : ""
+          }
+        ],
+        "responses" : {
+          "204" : {
+            "schema" : {
+"description" : "",
+"type" : "file"
+            },
+            "description" : ""
+          }
+        }
+      }
+    }
+    ,
+    "\/user/search" : {
+      "get" : {
+        "tags" : [ "UserEndpoint" ],
+        "description" : "",
+        "operationId" : "searchUsers",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "Authorization",
+            "in" : "header",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "name",
+            "in" : "query",
+            "type" : "string",
+            "description" : ""
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+"description" : "",
+"type" : "file"
+            },
+            "description" : ""
+          }
+        }
+      }
+    }
+    ,
+    "\/user/{id}" : {
+      "get" : {
+        "tags" : [ "UserEndpoint" ],
+        "description" : "",
+        "operationId" : "getUser",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "Authorization",
+            "in" : "header",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "id",
+            "in" : "path",
+            "required" : true,
+            "type" : "string",
+            "description" : ""
+          }
+        ],
+        "responses" : {
+          "200" : {
+            "schema" : {
+"description" : "",
+"type" : "file"
+            },
+            "description" : ""
+          }
+        }
+      }
+    }
+    ,
+    "\/user/{userId}" : {
+      "delete" : {
+        "tags" : [ "UserEndpoint" ],
+        "description" : "",
+        "operationId" : "deleteUser",
+        "produces" : [ "application/json" ],
+        "parameters" : [
+          {
+            "name" : "Authorization",
+            "in" : "header",
+            "type" : "string",
+            "description" : ""
+          },
+          {
+            "name" : "userId",
+            "in" : "path",
+            "required" : true,
+            "type" : "string",
+            "description" : ""
+          }
+        ],
+        "responses" : {
+          "204" : {
+            "schema" : {
+"description" : "",
+"type" : "file"
+            },
+            "description" : ""
+          }
+        }
+      }
+    }
+  }
+}

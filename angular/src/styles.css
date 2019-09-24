@@ -1,0 +1,32 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.title-header {
+    font-size: 19px;
+    color: #3f51b5;
+}
+
+.error {
+    font-size: 12px;
+    color: crimson;
+}
+
+.hint-msg {
+    color: burlywood;
+    font-size: 55%;
+}
+
+.login-fields-container {
+    width: 50%;
+    padding: 5%;
+}
+
+.login-fields-container > * {
+    width: 100%;
+}
