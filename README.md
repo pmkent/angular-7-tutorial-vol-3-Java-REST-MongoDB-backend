@@ -12,3 +12,109 @@ The user project will be built using Java 8 and the latest version of Angular 7.
 At the end of the tutorial I'll show you how to populate the user MongoDB using a java class UserDB we'll be using to populate 3 users.
 
 We will also examine how to create Swagger UI REST Html documents to test the REST backend if you need to debug the backend without the Angular front-end.
+
+Prerequisites:
+MongoDB version 3 and above installed.
+Java 8 installed.
+Angular 7 and above installed.
+Chrome browser
+Windows or Unix or Mac command line.
+Project structure for two projects as follows:
+
+Angular code (from \angular\ folder)
+\dev\javascript\vol-3\user
+
+Java Code (from the root folder)
+\dev\java\vol-3\user
+
+Steps:
+1. Checkeout the project into a folder using the command: git clone https://github.com/pmkent/angular-7-tutorial-vol-3-Java-REST-MongoDB-backend.git
+2. Change to the project root folder and build the project using the command build.bat (on Windows) or ./build.sh
+3. Populate the MongoDB database by first building the application using the command bin\build-shade.bat (.sh on unix)
+4. Test using http://localhost:8080 on a browser (advisably Chrome). Login using username: userone@gmail.com and password: password
+5. To test the backend separately using the url http://localhost:8080/restapi/ui and use the following JSON to test the login get method to get a JWT token:
+{
+  "username":"userone@gmail.com",
+  "password":"password"
+}
+6. To build (the separate) angular project (under .dev\javascript\vol-3\user) use the command build.bat under the angular project root folder. Make sure the java project is not running (because the angular files are copied into the user java application \webapp\ folder). Rebuild the java project and run it.
+
+Please let me know in the YouTube comments section!
+
+Enjoy!
+
+Java classes folder structure
+
+src/
+|___ main/
+|    |___ java/
+|    |    |___ com/
+|    |    |    |___ pmk/
+|    |    |    |    |___ app/
+|    |    |    |    |    |___ dao/
+|    |    |    |    |    |    |___ IUserRepo.java
+|    |    |    |    |    |    |___ Repository.java (interface)
+|    |    |    |    |    |___ db/
+|    |    |    |    |    |    |___ MongoDBUtil.java
+|    |    |    |    |    |    |___ UserDb.java
+|    |    |    |    |    |___ filter/
+|    |    |    |    |    |    |___ JWTSecurityFilter.java
+|    |    |    |    |    |___ model/
+|    |    |    |    |    |    |___ DAOBean.java
+|    |    |    |    |    |    |___ Credentials.java
+|    |    |    |    |    |    |___ User.java
+|    |    |    |    |    |___ rest/
+|    |    |    |    |    |    |___ LoginEndpoint.java
+|    |    |    |    |    |    |___ UserEndpoint.java
+|    |    |    |    |    |___ service/
+|    |    |    |    |    |    |___ LoginService.java
+|    |    |    |    |    |    |___ UserService.java
+|    |    |    |    |    |___ util/
+|    |    |    |    |    |    |___ AppUtil.java
+|    |    |    |    |    |    |___ PasswordUtil.java
+|    |    |    |    |    |    |___ TokenUtil.java
+|    |    |    |    |    |___ AppContextListener.java
+|    |___ resources/
+|    |    |___ config.properties
+|    |___ webapp/
+|    |    |___ assets/
+|    |    |___ restapi/
+|    |    |___ WEB-INF/
+|    |    |    |___ web.xml
+|    |    |___ index.html
+|    |    |___ main.js
+|    |    |___ polyfills.js
+|    |    |___ runtime.js
+|    |    |___ styles.js
+|    |    |___ vendor.js
+
+
+Angular project structure
+
+user/
+|___ src/
+|    |___ app/
+|    |    |___ model/
+|    |    |    |___ref-data.model.ts
+|    |    |    |___user.model.ts
+|    |    |___ page/
+|    |    |    |___ login/
+|    |    |    |    |___ sign-in/
+|    |    |    |    |    |___sign-in.component.html
+|    |    |    |    |    |___sign-in.component.ts
+|    |    |    |___ user/
+|    |    |    |    |___ list-user/
+|    |    |    |    |    |___list-user.component.html
+|    |    |    |    |    |___list-user.component.ts
+|    |    |___ util/
+|    |    |    |___auth.guard.ts
+|    |    |___ service/
+|    |    |    |___login.service.ts
+|    |    |    |___user.service.ts
+|    |    |___app-material.module.ts
+|    |    |___app-routing.module.ts
+|    |    |___app.component.css
+|    |    |___app.component.html
+|    |    |___app.component.spec.ts
+|    |    |___app.component.ts
+|    |    |___app.module.ts
