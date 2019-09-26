@@ -55,9 +55,9 @@ public class UserDb extends AppUtil {
 
     /**/
     private void createUser(
-            String username, String firstName, String middleName, String lastName, String password
-            , String gender
-            , Date dateOfBirth
+        String username, String firstName, String middleName, String lastName, String password
+        , String gender
+        , Date dateOfBirth
     ) {
         User user = getUserRepo().findByUsername(username);
 

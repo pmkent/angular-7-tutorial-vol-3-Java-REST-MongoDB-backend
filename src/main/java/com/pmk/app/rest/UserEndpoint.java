@@ -22,9 +22,7 @@ public class UserEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUsers(@HeaderParam("Authorization") String authorization) {
-        //System.out.println("UserREST:getUsers: jwt : >"+authorization+"<");
         List<User> userLst = getUserService().getUsers(authorization);
-        //System.out.println("UserREST:getSymbols: returning : >"+userLst.size()+"< users.");
         return Response.ok(userLst).build();
     }
 
@@ -33,7 +31,6 @@ public class UserEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUser(@PathParam("id") String id, @HeaderParam("Authorization") String authorization) {
-        //System.out.println("UserREST:getUsers: jwt : >"+authorization+"<");
         return Response.ok(getUserService().getUser(id, authorization)).build();
     }
 
@@ -42,7 +39,6 @@ public class UserEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public Response addUser(User user, @HeaderParam("Authorization") String authorization) {
         boolean result = getUserService().addUser(user, authorization);
-        //System.out.println("\nUserREST:addUser() Creating new use : "+user+" result : "+result);
         return Response.ok(result).build();
     }
 
@@ -51,7 +47,6 @@ public class UserEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateUser(User user, @HeaderParam("Authorization") String authorization) {
         boolean result = getUserService().updateUser(user, authorization);
-        //System.out.println("UserREST:updateUser() : "+user+" result : " + result);
         return Response.ok(result).build();
     }
 
@@ -60,7 +55,6 @@ public class UserEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteUser(@PathParam("userId") String userId, @HeaderParam("Authorization") String authorization) {
         boolean result = getUserService().deleteUser(userId, authorization);
-        //System.out.println("\nUserREST:deleteUser() Deleting user id : "+userId+" result : "+result);
         return Response.ok(result).build();
     }
 
@@ -69,7 +63,6 @@ public class UserEndpoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response searchUsers(@QueryParam("name") String name, @HeaderParam("Authorization") String authorization) {
-        System.out.println("UsrREST:searchUsers name : "+name);
         return Response.ok(getUserService().searchUsers(name)).build();
     }
 }

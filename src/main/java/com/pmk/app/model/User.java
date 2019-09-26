@@ -83,16 +83,16 @@ public class User extends DAOBean {
     @Override
     public String toString() {
         return "User [\nid="+getId()+
-                ", userId="+userId+
-                ", username="+username+
-                ", firstName="+firstName+
-                ", middleName="+middleName+
-                ", lastName="+lastName+
-                ", password="+password+
-                ", token="+token+
-                ", showpassword="+showpassword+
-                ", dateOfBirth="+dateOfBirth+
-                ", gender="+gender+
-                "]\n";
+            ", userId="+userId+
+            ", username="+username+
+            ", firstName="+firstName+
+            ", middleName="+middleName+
+            ", lastName="+lastName+
+            ", password="+password+
+            ", token="+token+
+            ", showpassword="+showpassword+
+            ", dateOfBirth="+dateOfBirth+
+            ", gender="+gender+
+        "]\n";
     }
 }

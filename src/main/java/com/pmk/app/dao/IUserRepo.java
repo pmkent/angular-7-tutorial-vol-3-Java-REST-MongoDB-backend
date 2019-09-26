@@ -33,7 +33,10 @@ public class IUserRepo implements Repository<User> {
 
     @Override
     public void upsert(User object) {
-        usrColl.save(object);
+        String query = "{username : '"+object.getUsername()+"'}";
+        User user = usrColl.findOne(query).as(User.class);
+        if (user == null) usrColl.save(object);
+        else usrColl.update(query).with(object);
     }
 
     @Override
