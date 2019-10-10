@@ -22,7 +22,8 @@ public class JWTSecurityFilter implements ContainerRequestFilter {
                 return containerRequest;
             else
                 throw new WebApplicationException(
-                        Response.status(401).type(MediaType.APPLICATION_JSON).entity("Invalid authorization header. Authorization required!").build()
+                        Response.status(401).type(MediaType.APPLICATION_JSON).
+                                entity("Invalid authorization header. Authorization required!").build()
                 );
         }
 

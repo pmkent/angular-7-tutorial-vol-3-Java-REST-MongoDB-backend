@@ -23,6 +23,7 @@ public class LoginService {
         User user = login(creds);
         if (user != null)
             user.setToken(TokenUtil.issueToken(Objects.requireNonNull(creds).getUsername(),urlInfo));
+        else System.out.println("LoginSvc:authenticate Login "+userInfo+" not in the database!");
 
         return user;
     }

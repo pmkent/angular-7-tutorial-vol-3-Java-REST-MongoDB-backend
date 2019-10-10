@@ -75,17 +75,12 @@ public class AppUtil {
         return maxId;
     }
 
-    /* 2019-5-27 Brought here from expense */
-    protected User getLoggedInUser(String jwt, IUserRepo iUsrRepo) {
-        String token = jwt.replaceAll("Bearer ","");
-        if (token == null) return null;
+    protected User getLoggedInUser(String token, IUserRepo iUsrRepo) {
         String email = TokenUtil.getUserEmailFromToken(token);
         return iUsrRepo.findByUsername(email);
-    } // end: getLoggedInUser() method.
+    }
 
-    /**/
     protected Date localDateTimeToDate(LocalDateTime localDateTime) {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
-    /**/
 }

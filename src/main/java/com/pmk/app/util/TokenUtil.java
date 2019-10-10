@@ -1,6 +1,7 @@
 package com.pmk.app.util;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -28,24 +29,12 @@ public class TokenUtil {
         try {
             Jwts.parser().setSigningKey(generateEncryptionSecret()).parseClaimsJws(token);
             return true;
-        } catch (Exception e) {
-            System.out.println("\nTokenUtil:validateToken INVALID TOKEN Reason : >" + e + " returning false >");
-            return false;
+        } catch (ExpiredJwtException e) {
+            System.out.println(" Token expired (ExpiredJwtException) : >"+e+"<");
+        } catch(Exception e){
+            System.out.println("Some other JWT parsing Exception : >"+e+"<");
         }
-    }
-
-    public static boolean verify(String jwt, String username) {
-
-        try{
-            Claims claims = Jwts.parser()
-                    .setSigningKey(generateEncryptionSecret()).parseClaimsJws(jwt)
-                    .getBody();
-
-            return claims.getSubject().equals(username);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        return false;
     }
 
     private static Key generateEncryptionSecret() {
@@ -63,11 +52,10 @@ public class TokenUtil {
             e.printStackTrace();
         }
         return null;
-    } // end: getUserEmailFromToken() method
+    }
 
     private static int getTokenExpiresIn() {
         String expires = APP_UTL.getProperty("token.expires.in");
         return Integer.parseInt(expires);
     }
-    /**/
 }

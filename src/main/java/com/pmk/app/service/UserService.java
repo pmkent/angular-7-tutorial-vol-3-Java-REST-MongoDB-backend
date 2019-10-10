@@ -20,7 +20,8 @@ public class UserService extends AppUtil {
 
     public List<User> getUsers(String jwt) {
         String token = jwt.replaceAll("Bearer ", "");
-        if (!TokenUtil.verify(token,getLoggedInUser(jwt,iUserRepo).getUsername())) return null;
+
+        if (!TokenUtil.validate(token)) return null;
         return iUserRepo.findAll();
     }
 
@@ -36,17 +37,18 @@ public class UserService extends AppUtil {
         if (!TokenUtil.validate(token)) return false;
 
         if (iUserRepo.findByUsername(user.getUsername()) != null) {
+            System.out.println("UsrSvc:addUser Duplicate username "+user.getUsername()+" in the database!");
             return false;
         } else {
             user.setUserId(getMaxId("USER", iUserRepo));
         }
 
-        user.setUserId(getMaxId("USER",iUserRepo));
+        user.setUserId(getMaxId("ADDRESS", iUserRepo)); // 2019-9-30 TODO DELETE
 
         user.setCreateDt(TODAY);
         user.setUpdateDt(TODAY);
 
-        User loggedInUsr = getLoggedInUser(jwt,iUserRepo);
+        User loggedInUsr = getLoggedInUser(token,iUserRepo);
         user.setUpdateBy(loggedInUsr.getUsername());
 
         user.setPassword(PasswordUtil.getPasswordHash(user.getPassword()));
@@ -65,7 +67,7 @@ public class UserService extends AppUtil {
 
         user.setUpdateDt(TODAY);
 
-        User loggedInUsr = getLoggedInUser(jwt,iUserRepo);
+        User loggedInUsr = getLoggedInUser(token,iUserRepo);
         user.setUpdateBy(loggedInUsr.getUsername());
 
         if (user.getPassword().length() < 20) // Don't update database with Hash unless the user just changed the password
@@ -99,5 +101,5 @@ public class UserService extends AppUtil {
                 usrLst.add(user);
         }
         return usrLst;
-    } // end: searchUsers() method
+    }
 }

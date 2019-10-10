@@ -51,9 +51,8 @@ public class UserDb extends AppUtil {
                 "OTHER" // gender
                 , new Date(getFormattedDt("8-15-1980").getTime())
         );
-    } // end: getUserData()
+    }
 
-    /**/
     private void createUser(
         String username, String firstName, String middleName, String lastName, String password
         , String gender
@@ -81,13 +80,11 @@ public class UserDb extends AppUtil {
         getUserRepo().upsert(user);
 
         System.out.println("\nNew "+user+"");
-    } // end: createUser() method
+    }
 
-    /**/
     private IUserRepo getUserRepo() {
         MongoCollection collection = JONGO.getCollection("user");
         collection.ensureIndex("{userId:1,username:1}", "{unique:true,dropDups: true}");
         return new IUserRepo(collection);
     }
-    /**/
 }
