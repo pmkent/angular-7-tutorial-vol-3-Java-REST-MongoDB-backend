@@ -227,7 +227,7 @@
     <jongo.version>1.4.0</jongo.version>
     <fasterxml.jackson.version>2.9.8</fasterxml.jackson.version>
     <maven.compiler.version>2.3.2</maven.compiler.version>
-    <jetty.version>9.2.11.v20150529</jetty.version>
+    <jetty.version>9.4.41.v20210516</jetty.version>
     <enunciate.version>2.10.1</enunciate.version>
     <json.webtoken.version>0.9.1</json.webtoken.version>
     <org.json.version>20180813</org.json.version>
