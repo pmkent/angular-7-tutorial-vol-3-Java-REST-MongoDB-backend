@@ -225,7 +225,7 @@
     <jdk.version>1.8</jdk.version>
     <mongodb.version>3.10.1</mongodb.version>
     <jongo.version>1.4.0</jongo.version>
-    <fasterxml.jackson.version>2.9.8</fasterxml.jackson.version>
+    <fasterxml.jackson.version>2.12.7.1</fasterxml.jackson.version>
     <maven.compiler.version>2.3.2</maven.compiler.version>
     <jetty.version>9.2.11.v20150529</jetty.version>
     <enunciate.version>2.10.1</enunciate.version>
